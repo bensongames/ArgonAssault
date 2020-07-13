@@ -1,36 +1,40 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-
-    [Tooltip("In m/s")][SerializeField] float xSpeed = 20f;
+    [Header("General")]
+    [Tooltip("In m/s")][SerializeField] float controlSpeed = 20f;
     [Tooltip("In m")] [SerializeField] float xRange = 6f;
     [Tooltip("In m")] [SerializeField] float yRange = 3f;
-    [SerializeField] float positionPitchFactor = -5f;
-    [SerializeField] float throwPitchFactor = -20f;
+
+    [Header("Screen Position Control")]
+    [SerializeField] float positionPitchFactor = -5f;    
     [SerializeField] float positionYawFactor = +5f;
-    [SerializeField] float throwRollFactor = -20f;
+
+    [Header("Throw Control")]
+    [SerializeField] float controlPitchFactor = -20f;
+    [SerializeField] float controlRollFactor = -20f;
+
     float xThrow = 0f;
     float yThrow = 0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    bool isControlEnabled = true;
 
     // Update is called once per frame
     void Update()
     {
-        ProcessUserInput();
-        ProcessPosition();
-        ProcessRotation();
+        if (isControlEnabled)
+        {
+            ProcessUserInput();
+            ProcessPosition();
+            ProcessRotation();
+        }
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Called from SendMessage")]
+    private void OnPlayerDeath() // Called by String reference
     {
-        print("Trigger Boom!");
+        isControlEnabled = false;
     }
 
     private void ProcessUserInput()
@@ -46,7 +50,7 @@ public class Player : MonoBehaviour
 
     private float GetXPos()
     {        
-        float xOffset = xThrow * xSpeed * Time.deltaTime;
+        float xOffset = xThrow * controlSpeed * Time.deltaTime;
         float rawXPos = transform.localPosition.x + xOffset;
         float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
         return clampedXPos;
@@ -54,7 +58,7 @@ public class Player : MonoBehaviour
 
     private float GetYPos()
     {        
-        float yOffset = yThrow * xSpeed * Time.deltaTime;
+        float yOffset = yThrow * controlSpeed * Time.deltaTime;
         float rawYPos = transform.localPosition.y + yOffset;
         float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
         return clampedYPos;
@@ -63,10 +67,10 @@ public class Player : MonoBehaviour
     private void ProcessRotation()
     {
         float pitchDueToPosition = transform.localPosition.y * positionPitchFactor;
-        float pitchDueToThrow = yThrow * throwPitchFactor;
+        float pitchDueToThrow = yThrow * controlPitchFactor;
         float pitch = pitchDueToPosition + pitchDueToThrow;  // x
         float yaw = transform.localPosition.x * positionYawFactor;   // y
-        float roll = xThrow * throwRollFactor; // z
+        float roll = xThrow * controlRollFactor; // z
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
     }
 }
