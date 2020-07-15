@@ -7,7 +7,7 @@ public class CollisionHandler : MonoBehaviour
 {
 
     [Tooltip("In seconds")][SerializeField] float levelLoadDelay = 1f;
-    [Tooltip("Particle Effects")][SerializeField] GameObject deathFX;
+    [Tooltip("Particle Effects")][SerializeField] GameObject playerDeathFX;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +16,8 @@ public class CollisionHandler : MonoBehaviour
 
     private void StartDeathSequence()
     {
-        deathFX.SetActive(true);
+        playerDeathFX.SetActive(true);
+        SendMessage("OnPlayerDeath");
         Invoke("ReloadLevel", levelLoadDelay);        
     }
 
