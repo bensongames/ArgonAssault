@@ -501,6 +501,12 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &668746267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5299442488647283973, guid: ad5998779d2db84469c0467563422d76,
+    type: 3}
+  m_PrefabInstance: {fileID: 4026742185945871817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &705507994 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 4083498366655424679, guid: c031b24066d165b4a9ba0f9fdeea265d,
@@ -936,6 +942,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1272586319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5299442489418858977, guid: ad5998779d2db84469c0467563422d76,
+    type: 3}
+  m_PrefabInstance: {fileID: 4026742185945871817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1301894347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,6 +2280,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 963194228}
     m_Modifications:
+    - target: {fileID: 4026742185405543709, guid: ad5998779d2db84469c0467563422d76,
+        type: 3}
+      propertyPath: guns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026742185405543709, guid: ad5998779d2db84469c0467563422d76,
+        type: 3}
+      propertyPath: lasers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026742185405543709, guid: ad5998779d2db84469c0467563422d76,
+        type: 3}
+      propertyPath: guns.Array.data[0]
+      value: 
+      objectReference: {fileID: 668746267}
+    - target: {fileID: 4026742185405543709, guid: ad5998779d2db84469c0467563422d76,
+        type: 3}
+      propertyPath: guns.Array.data[1]
+      value: 
+      objectReference: {fileID: 1272586319}
+    - target: {fileID: 4026742185405543709, guid: ad5998779d2db84469c0467563422d76,
+        type: 3}
+      propertyPath: lasers.Array.data[0]
+      value: 
+      objectReference: {fileID: 668746267}
+    - target: {fileID: 4026742185405543709, guid: ad5998779d2db84469c0467563422d76,
+        type: 3}
+      propertyPath: lasers.Array.data[1]
+      value: 
+      objectReference: {fileID: 1272586319}
     - target: {fileID: 4026870281083084981, guid: ad5998779d2db84469c0467563422d76,
         type: 3}
       propertyPath: m_Name
@@ -2327,6 +2369,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 2.6320002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299442488647283973, guid: ad5998779d2db84469c0467563422d76,
+        type: 3}
+      propertyPath: m_Name
+      value: Lasers Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299442489418858977, guid: ad5998779d2db84469c0467563422d76,
+        type: 3}
+      propertyPath: m_Name
+      value: Lasers Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad5998779d2db84469c0467563422d76, type: 3}

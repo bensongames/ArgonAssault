@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("In m")] [SerializeField] float xRange = 6f;
     [Tooltip("In m")] [SerializeField] float yRange = 3f;
 
+    [Header("Weapons")]
+    [SerializeField] private GameObject[] lasers;
+
     [Header("Screen Position Control")]
     [SerializeField] float positionPitchFactor = -5f;    
     [SerializeField] float positionYawFactor = +5f;
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
             ProcessUserInput();
             ProcessPosition();
             ProcessRotation();
+            ProcessFiring();
         }
     }
 
@@ -73,4 +77,26 @@ public class PlayerController : MonoBehaviour
         float roll = xThrow * controlRollFactor; // z
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
     }
+
+    private void ProcessFiring()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire1"))
+        {
+            FireWeapons(true);
+        }
+        else
+        {
+            FireWeapons(false);
+        }
+    }
+
+    private void FireWeapons(bool fire)
+    {
+        foreach (GameObject laser in lasers)
+        {
+            laser.SetActive(fire);
+        }
+
+    }
+
 }
